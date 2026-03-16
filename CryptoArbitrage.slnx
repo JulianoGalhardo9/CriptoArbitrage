@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="CryptoArbitrage.API/CryptoArbitrage.API.csproj" />
+  <Project Path="CryptoArbitrage.Application/CryptoArbitrage.Application.csproj" />
+  <Project Path="CryptoArbitrage.Domain/CryptoArbitrage.Domain.csproj" />
+  <Project Path="CryptoArbitrage.Infrastructure/CryptoArbitrage.Infrastructure.csproj" />
+  <Project Path="CryptoArbitrage.Tests/CryptoArbitrage.Tests.csproj" />
+</Solution>
