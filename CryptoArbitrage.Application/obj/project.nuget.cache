@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "9IoOuNvthjY=",
+  "dgSpecHash": "hkRY3wTgRI8=",
   "success": true,
   "projectFilePath": "/Users/julianogalhardo/Documents/CryptoArbitrage/CryptoArbitrage.Application/CryptoArbitrage.Application.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/Users/julianogalhardo/.nuget/packages/microsoft.extensions.dependencyinjection/10.0.5/microsoft.extensions.dependencyinjection.10.0.5.nupkg.sha512",
+    "/Users/julianogalhardo/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/10.0.5/microsoft.extensions.dependencyinjection.abstractions.10.0.5.nupkg.sha512"
+  ],
   "logs": []
 }
