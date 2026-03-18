@@ -1,6 +1,9 @@
 using CryptoArbitrage.Application.Interfaces;
 using CryptoArbitrage.Domain.Entities;
 using CryptoArbitrage.Domain.Interfaces;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace CryptoArbitrage.Application.Workers;
 
@@ -35,7 +38,7 @@ public class ArbitrageMonitorWorker : BackgroundService
                     // 2. Lógica de Alerta: Se o lucro for maior que 0.2% (ajustável)
                     if (result.PercentageProfit > 0.2m)
                     {
-                        _logger.LogWarning("🚀 OPORTUNIDADE ENCONTRADA: {Symbol} | Lucro: {Profit}%", 
+                        _logger.LogWarning("OPORTUNIDADE ENCONTRADA: {Symbol} | Lucro: {Profit}%", 
                             result.Symbol, result.PercentageProfit);
 
                         // 3. Persiste a oportunidade no banco de dados
@@ -47,18 +50,18 @@ public class ArbitrageMonitorWorker : BackgroundService
                         );
 
                         await alertRepository.AddAsync(newAlert);
-                        _logger.LogInformation("✅ Alerta salvo no banco de dados com sucesso.");
+                        _logger.LogInformation("Alerta salvo no banco de dados com sucesso.");
                     }
                     else
                     {
-                        _logger.LogInformation("📊 {Time} - {Symbol}: {Profit}% (Aguardando oportunidade...)", 
+                        _logger.LogInformation("{Time} - {Symbol}: {Profit}% (Aguardando oportunidade...)", 
                             DateTime.Now.ToString("HH:mm:ss"), result.Symbol, result.PercentageProfit);
                     }
                 }
             }
             catch (Exception ex)
             {
-                _logger.LogError("❌ Erro no ciclo do monitor: {Message}", ex.Message);
+                _logger.LogError("Erro no ciclo do monitor: {Message}", ex.Message);
             }
 
             // Espera 10 segundos para não ser bloqueado pelas APIs (Rate Limit)

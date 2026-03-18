@@ -7,4 +7,6 @@ public interface ICryptoService
     Task ExecuteAddAsync(RegisterCryptoRequest request);
 
     Task<PriceResponse> GetCurrentPriceAsync(string symbol);
+
+    Task<IEnumerable<AlertResponse>> GetRecentAlertsAsync(int count);
 }

@@ -45,4 +45,11 @@ public class CryptocurrencyController : ControllerBase
         var result = await _arbitrageService.CalculateArbitrageAsync(symbol);
         return Ok(result);
     }
+
+    [HttpGet("alerts/recent")]
+    public async Task<IActionResult> GetRecentAlerts([FromQuery] int count = 10)
+    {
+        var alerts = await _cryptoService.GetRecentAlertsAsync(count);
+        return Ok(alerts);
+    }
 }

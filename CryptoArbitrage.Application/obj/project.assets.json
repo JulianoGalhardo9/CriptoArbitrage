@@ -1135,39 +1135,41 @@
       "CryptoArbitrage.Domain >= 1.0.0",
       "CryptoArbitrage.Infrastructure >= 1.0.0",
       "Microsoft.Extensions.DependencyInjection >= 9.0.0",
-      "Microsoft.Extensions.Hosting.Abstractions >= 9.0.0"
+      "Microsoft.Extensions.Hosting.Abstractions >= 9.0.0",
+      "Microsoft.Extensions.Logging.Abstractions >= 9.0.0"
     ]
   },
   "packageFolders": {
-    "/root/.nuget/packages/": {}
+    "/Users/julianogalhardo/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/src/CryptoArbitrage.Application/CryptoArbitrage.Application.csproj",
+      "projectUniqueName": "/Users/julianogalhardo/Documents/CryptoArbitrage/CryptoArbitrage.Application/CryptoArbitrage.Application.csproj",
       "projectName": "CryptoArbitrage.Application",
-      "projectPath": "/src/CryptoArbitrage.Application/CryptoArbitrage.Application.csproj",
-      "packagesPath": "/root/.nuget/packages/",
-      "outputPath": "/src/CryptoArbitrage.Application/obj/",
+      "projectPath": "/Users/julianogalhardo/Documents/CryptoArbitrage/CryptoArbitrage.Application/CryptoArbitrage.Application.csproj",
+      "packagesPath": "/Users/julianogalhardo/.nuget/packages/",
+      "outputPath": "/Users/julianogalhardo/Documents/CryptoArbitrage/CryptoArbitrage.Application/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/root/.nuget/NuGet/NuGet.Config"
+        "/Users/julianogalhardo/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
       ],
       "sources": {
+        "/usr/local/share/dotnet/library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "/src/CryptoArbitrage.Domain/CryptoArbitrage.Domain.csproj": {
-              "projectPath": "/src/CryptoArbitrage.Domain/CryptoArbitrage.Domain.csproj"
+            "/Users/julianogalhardo/Documents/CryptoArbitrage/CryptoArbitrage.Domain/CryptoArbitrage.Domain.csproj": {
+              "projectPath": "/Users/julianogalhardo/Documents/CryptoArbitrage/CryptoArbitrage.Domain/CryptoArbitrage.Domain.csproj"
             },
-            "/src/CryptoArbitrage.Infrastructure/CryptoArbitrage.Infrastructure.csproj": {
-              "projectPath": "/src/CryptoArbitrage.Infrastructure/CryptoArbitrage.Infrastructure.csproj"
+            "/Users/julianogalhardo/Documents/CryptoArbitrage/CryptoArbitrage.Infrastructure/CryptoArbitrage.Infrastructure.csproj": {
+              "projectPath": "/Users/julianogalhardo/Documents/CryptoArbitrage/CryptoArbitrage.Infrastructure/CryptoArbitrage.Infrastructure.csproj"
             }
           }
         }
@@ -1182,7 +1184,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.300"
+      "SdkAnalysisLevel": "10.0.200"
     },
     "frameworks": {
       "net9.0": {
@@ -1193,6 +1195,10 @@
             "version": "[9.0.0, )"
           },
           "Microsoft.Extensions.Hosting.Abstractions": {
+            "target": "Package",
+            "version": "[9.0.0, )"
+          },
+          "Microsoft.Extensions.Logging.Abstractions": {
             "target": "Package",
             "version": "[9.0.0, )"
           }
@@ -1208,12 +1214,22 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[9.0.14, 9.0.14]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[9.0.14, 9.0.14]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/9.0.312/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/10.0.201/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
