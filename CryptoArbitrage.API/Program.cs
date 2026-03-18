@@ -2,6 +2,7 @@ using CryptoArbitrage.Infrastructure;
 using CryptoArbitrage.Application;
 using CryptoArbitrage.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+using CryptoArbitrage.Application.Workers;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
@@ -9,6 +10,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication();
+builder.Services.AddHostedService<ArbitrageMonitorWorker>();
 
 var app = builder.Build();
 
