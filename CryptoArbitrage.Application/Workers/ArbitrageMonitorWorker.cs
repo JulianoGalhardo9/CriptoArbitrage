@@ -34,21 +34,34 @@ public class ArbitrageMonitorWorker : BackgroundService
                 using (var scope = _serviceProvider.CreateScope())
                 {
                     var arbitrageService = scope.ServiceProvider.GetRequiredService<IArbitrageService>();
-                    var alertRepository = scope.ServiceProvider.GetRequiredService<IArbitrageAlertRepository>();
+                    var alertRepo = scope.ServiceProvider.GetRequiredService<IArbitrageAlertRepository>();
+                    var cryptoRepo = scope.ServiceProvider.GetRequiredService<ICryptocurrencyRepository>();
 
-                    // 1. Calcula a diferença entre Binance e Bitget
-                    var result = await arbitrageService.CalculateArbitrageAsync("BTCUSDT");
+                    // 1. Busca todas as moedas que você cadastrou (Ex: BTC, ETH, SOL)
+                    var myCryptos = await cryptoRepo.GetAllAsync();
 
-                    // 2. Lógica de Alerta: Se o lucro for maior que 0.2% (ajustável)
-                    if (strategy.IsProfitable(result.PercentageProfit))
+                    foreach (var crypto in myCryptos)
                     {
-                        _logger.LogWarning("LUCRO REAL DETECTADO (Descontando Taxas): {Profit}%",
-                            result.PercentageProfit - strategy.EstimatedFees);
-                    }
-                    else
-                    {
-                        _logger.LogInformation("{Time} - {Symbol}: {Profit}% (Aguardando oportunidade...)",
-                            DateTime.Now.ToString("HH:mm:ss"), result.Symbol, result.PercentageProfit);
+                        try
+                        {
+                            // O símbolo no banco pode ser "BTC", mas nas APIs precisamos de "BTCUSDT"
+                            string symbolPair = crypto.Symbol.EndsWith("USDT") ? crypto.Symbol : $"{crypto.Symbol}USDT";
+
+                            var result = await arbitrageService.CalculateArbitrageAsync(symbolPair);
+
+                            if (strategy.IsProfitable(result.PercentageProfit))
+                            {
+                                // Salva o alerta...
+                                _logger.LogWarning("💰 OPORTUNIDADE EM {Symbol}: {Profit}%", result.Symbol, result.PercentageProfit);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            _logger.LogError("❌ Erro ao processar {Symbol}: {Msg}", crypto.Symbol, ex.Message);
+                        }
+
+                        // Pequena pausa entre moedas para não ser bloqueado (Rate Limit)
+                        await Task.Delay(500, stoppingToken);
                     }
                 }
             }

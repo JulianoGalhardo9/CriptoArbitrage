@@ -32,3 +32,5 @@
 /src/CryptoArbitrage.Application/obj/Debug/net9.0/refint/CryptoArbitrage.Application.dll
 /src/CryptoArbitrage.Application/obj/Debug/net9.0/CryptoArbitrage.Application.pdb
 /src/CryptoArbitrage.Application/obj/Debug/net9.0/ref/CryptoArbitrage.Application.dll
+/Users/julianogalhardo/Documents/CryptoArbitrage/CryptoArbitrage.Application/bin/Debug/net9.0/CryptoArbitrage.Infrastructure.dll
+/Users/julianogalhardo/Documents/CryptoArbitrage/CryptoArbitrage.Application/bin/Debug/net9.0/CryptoArbitrage.Infrastructure.pdb

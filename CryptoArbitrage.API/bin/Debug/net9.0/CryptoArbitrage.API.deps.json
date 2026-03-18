@@ -791,7 +791,8 @@
           "CryptoArbitrage.Domain": "1.0.0",
           "CryptoArbitrage.Infrastructure": "1.0.0",
           "Microsoft.Extensions.DependencyInjection": "9.0.0",
-          "Microsoft.Extensions.Hosting.Abstractions": "9.0.0"
+          "Microsoft.Extensions.Hosting.Abstractions": "9.0.0",
+          "Microsoft.Extensions.Logging.Abstractions": "10.0.0"
         },
         "runtime": {
           "CryptoArbitrage.Application.dll": {

@@ -141,15 +141,6 @@
 /Users/julianogalhardo/Documents/CryptoArbitrage/CryptoArbitrage.API/obj/Debug/net9.0/CryptoArbitrage.API.pdb
 /Users/julianogalhardo/Documents/CryptoArbitrage/CryptoArbitrage.API/obj/Debug/net9.0/CryptoArbitrage.API.genruntimeconfig.cache
 /Users/julianogalhardo/Documents/CryptoArbitrage/CryptoArbitrage.API/obj/Debug/net9.0/ref/CryptoArbitrage.API.dll
-/Users/julianogalhardo/Documents/CryptoArbitrage/CryptoArbitrage.API/bin/Debug/net9.0/Microsoft.Extensions.Configuration.dll
-/Users/julianogalhardo/Documents/CryptoArbitrage/CryptoArbitrage.API/bin/Debug/net9.0/Microsoft.Extensions.Configuration.Abstractions.dll
-/Users/julianogalhardo/Documents/CryptoArbitrage/CryptoArbitrage.API/bin/Debug/net9.0/Microsoft.Extensions.Configuration.Binder.dll
-/Users/julianogalhardo/Documents/CryptoArbitrage/CryptoArbitrage.API/bin/Debug/net9.0/Microsoft.Extensions.DependencyInjection.dll
-/Users/julianogalhardo/Documents/CryptoArbitrage/CryptoArbitrage.API/bin/Debug/net9.0/Microsoft.Extensions.Diagnostics.dll
-/Users/julianogalhardo/Documents/CryptoArbitrage/CryptoArbitrage.API/bin/Debug/net9.0/Microsoft.Extensions.Diagnostics.Abstractions.dll
-/Users/julianogalhardo/Documents/CryptoArbitrage/CryptoArbitrage.API/bin/Debug/net9.0/Microsoft.Extensions.Http.dll
-/Users/julianogalhardo/Documents/CryptoArbitrage/CryptoArbitrage.API/bin/Debug/net9.0/Microsoft.Extensions.Logging.dll
-/Users/julianogalhardo/Documents/CryptoArbitrage/CryptoArbitrage.API/bin/Debug/net9.0/Microsoft.Extensions.Options.ConfigurationExtensions.dll
 /src/CryptoArbitrage.API/bin/Debug/net9.0/appsettings.Development.json
 /src/CryptoArbitrage.API/bin/Debug/net9.0/appsettings.json
 /src/CryptoArbitrage.API/bin/Debug/net9.0/CryptoArbitrage.API.staticwebassets.endpoints.json
