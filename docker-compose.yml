@@ -1,0 +1,29 @@
+version: '3.8'
+services:
+  db:
+    image: mariadb:latest
+    container_name: crypto-mysql
+    environment:
+      MARIADB_ROOT_PASSWORD: root_password
+      MARIADB_DATABASE: CryptoDb
+      MARIADB_ROOT_HOST: '%'
+    ports:
+      - "3306:3306"
+    networks:
+      - crypto-network
+
+  api:
+    build: .
+    container_name: crypto-api
+    ports:
+      - "5174:8080"
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=db;Port=3306;Database=CryptoDb;User=root;Password=root_password;
+    depends_on:
+      - db
+    networks:
+      - crypto-network
+
+networks:
+  crypto-network:
+    driver: bridge

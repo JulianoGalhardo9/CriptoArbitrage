@@ -6,20 +6,16 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CryptoArbitrage.Infrastructure;
-
 public static class DependencyInjection
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
-        // Buscamos a string de conexão aqui dentro agora
         var connectionString = configuration.GetConnectionString("DefaultConnection");
 
-        // Configuramos o DbContext
         services.AddDbContext<AppDbContext>(options =>
-            options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
-        
-        services.AddScoped<ICryptocurrencyRepository, CryptocurrencyRepository>();
+            options.UseMySql(connectionString!, new MariaDbServerVersion(new Version(12, 2, 2))));
 
+        services.AddScoped<ICryptocurrencyRepository, CryptocurrencyRepository>();
         return services;
     }
 }

@@ -1,33 +1,39 @@
 using CryptoArbitrage.Infrastructure;
 using CryptoArbitrage.Application;
+using CryptoArbitrage.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-
 builder.Services.AddControllers();
-
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication();
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
+// Aplica migrations com retry (aguarda o banco subir)
+using (var scope = app.Services.CreateScope())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    var retries = 10;
+    while (retries > 0)
+    {
+        try
+        {
+            db.Database.Migrate();
+            break;
+        }
+        catch
+        {
+            retries--;
+            Thread.Sleep(3000);
+        }
+    }
 }
 
-// Redireciona chamadas HTTP para HTTPS automaticamente
-app.UseHttpsRedirection();
-
-// Autorização
+app.UseSwagger();
+app.UseSwaggerUI();
 app.UseAuthorization();
-
-// Mapeia as rotas para os métodos dentro das nossas Controllers
 app.MapControllers();
-
-
 app.Run();
