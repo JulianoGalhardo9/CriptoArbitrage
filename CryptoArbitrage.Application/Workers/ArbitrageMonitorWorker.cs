@@ -21,8 +21,8 @@ public class ArbitrageMonitorWorker : BackgroundService
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        // Estratégia agressiva para teste (mude para valores reais depois)
-        var strategy = new ArbitrageStrategy { MinProfitPercentage = 0.3m, EstimatedFees = 0.15m };
+        // Configuração: Lucro alvo de 0.5% já descontando 0.15% de taxas estimadas
+        var strategy = new ArbitrageStrategy { MinProfitPercentage = 5.15m, EstimatedFees = 0.15m };
 
         _logger.LogInformation("🤖 Monitor de Arbitragem iniciado e vigiando o mercado...");
 
@@ -37,7 +37,6 @@ public class ArbitrageMonitorWorker : BackgroundService
 
                     var tasks = myCryptos.Select(async crypto =>
                     {
-                        // Cada moeda em seu próprio escopo para evitar conflitos no DbContext
                         using (var scope = _serviceProvider.CreateScope())
                         {
                             try
@@ -49,19 +48,23 @@ public class ArbitrageMonitorWorker : BackgroundService
                                 string symbolPair = crypto.Symbol.EndsWith("USDT") ? crypto.Symbol : $"{crypto.Symbol}USDT";
                                 var result = await arbitrageService.CalculateArbitrageAsync(symbolPair);
 
-                                // TESTE DE FORÇA BRUTA (if true envia sempre)
+                                // Lógica de Lucro Real
                                 if (strategy.IsProfitable(result.PercentageProfit))
                                 {
                                     var alert = new ArbitrageAlert(result.Symbol, result.PriceExA, result.PriceExB, result.PercentageProfit);
                                     await alertRepo.AddAsync(alert);
 
-                                    _logger.LogWarning("🚀 TESTE DE ENVIO PARA {Symbol}: {Profit}%", result.Symbol, result.PercentageProfit);
+                                    _logger.LogWarning("💰 LUCRO DETECTADO EM {Symbol}: {Profit}%", result.Symbol, result.PercentageProfit);
 
-                                    var message = $"ANÁLISE DO ROBÔ!\nMoeda: {result.Symbol}\nLucro Atual: {result.PercentageProfit}%\nBinance: ${result.PriceExA}\nBitget: ${result.PriceExB}";
+                                    var message = $"OPORTUNIDADE DE LUCRO!\n" +
+                                                  $"Moeda: {result.Symbol}\n" +
+                                                  $"Lucro: {result.PercentageProfit}%\n" +
+                                                  $"Binance: ${result.PriceExA}\n" +
+                                                  $"Bitget: ${result.PriceExB}";
 
+                                    // Usamos a variável já declarada acima, sem o 'var'
                                     await notificationService.SendAlertAsync(message);
 
-                                    // Delay para não sobrecarregar a API do Telegram
                                     await Task.Delay(1000, stoppingToken);
                                 }
                             }
@@ -80,6 +83,7 @@ public class ArbitrageMonitorWorker : BackgroundService
                 _logger.LogError("⚠️ Erro no ciclo do monitor: {Message}", ex.Message);
             }
 
+            // Aguarda 10 segundos para a próxima varredura
             await Task.Delay(TimeSpan.FromSeconds(10), stoppingToken);
         }
     }
