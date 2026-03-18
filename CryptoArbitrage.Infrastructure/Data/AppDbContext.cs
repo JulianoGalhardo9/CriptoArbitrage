@@ -9,6 +9,8 @@ public class AppDbContext : DbContext
 
     public DbSet<Cryptocurrency> Cryptocurrencies { get; set; }
 
+    public DbSet<ArbitrageAlert> ArbitrageAlerts { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         // Fluent API: Configurações detalhadas da tabela

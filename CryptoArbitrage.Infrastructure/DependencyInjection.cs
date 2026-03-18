@@ -19,6 +19,8 @@ public static class DependencyInjection
 
         services.AddScoped<ICryptocurrencyRepository, CryptocurrencyRepository>();
 
+        services.AddScoped<IArbitrageAlertRepository, ArbitrageAlertRepository>();
+
         // Adiciona as ferramentas de HTTP do .NET
         services.AddHttpClient();
 

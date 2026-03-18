@@ -10,3 +10,15 @@
 /Users/julianogalhardo/Documents/CryptoArbitrage/CryptoArbitrage.Domain/obj/Debug/net9.0/refint/CryptoArbitrage.Domain.dll
 /Users/julianogalhardo/Documents/CryptoArbitrage/CryptoArbitrage.Domain/obj/Debug/net9.0/CryptoArbitrage.Domain.pdb
 /Users/julianogalhardo/Documents/CryptoArbitrage/CryptoArbitrage.Domain/obj/Debug/net9.0/ref/CryptoArbitrage.Domain.dll
+/src/CryptoArbitrage.Domain/bin/Debug/net9.0/CryptoArbitrage.Domain.deps.json
+/src/CryptoArbitrage.Domain/bin/Debug/net9.0/CryptoArbitrage.Domain.dll
+/src/CryptoArbitrage.Domain/bin/Debug/net9.0/CryptoArbitrage.Domain.pdb
+/src/CryptoArbitrage.Domain/obj/Debug/net9.0/CryptoArbitrage.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/src/CryptoArbitrage.Domain/obj/Debug/net9.0/CryptoArbitrage.Domain.AssemblyInfoInputs.cache
+/src/CryptoArbitrage.Domain/obj/Debug/net9.0/CryptoArbitrage.Domain.AssemblyInfo.cs
+/src/CryptoArbitrage.Domain/obj/Debug/net9.0/CryptoArbitrage.Domain.csproj.CoreCompileInputs.cache
+/src/CryptoArbitrage.Domain/obj/Debug/net9.0/CryptoArbitrage.Domain.sourcelink.json
+/src/CryptoArbitrage.Domain/obj/Debug/net9.0/CryptoArbitrage.Domain.dll
+/src/CryptoArbitrage.Domain/obj/Debug/net9.0/refint/CryptoArbitrage.Domain.dll
+/src/CryptoArbitrage.Domain/obj/Debug/net9.0/CryptoArbitrage.Domain.pdb
+/src/CryptoArbitrage.Domain/obj/Debug/net9.0/ref/CryptoArbitrage.Domain.dll

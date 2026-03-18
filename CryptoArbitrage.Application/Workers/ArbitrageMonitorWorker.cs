@@ -1,7 +1,6 @@
 using CryptoArbitrage.Application.Interfaces;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using CryptoArbitrage.Domain.Entities;
+using CryptoArbitrage.Domain.Interfaces;
 
 namespace CryptoArbitrage.Application.Workers;
 
@@ -18,38 +17,51 @@ public class ArbitrageMonitorWorker : BackgroundService
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        _logger.LogInformation("🤖 Monitor de Arbitragem Iniciado...");
+        _logger.LogInformation("🤖 Monitor de Arbitragem iniciado e vigiando o mercado...");
 
         while (!stoppingToken.IsCancellationRequested)
         {
             try
             {
-                // Como este serviço roda "para sempre", precisamos criar um "escopo" 
-                // para usar o ArbitrageService (que é Scoped)
+                // Criamos um escopo temporário para usar serviços "Scoped" (Banco e APIs)
                 using (var scope = _serviceProvider.CreateScope())
                 {
                     var arbitrageService = scope.ServiceProvider.GetRequiredService<IArbitrageService>();
-                    
-                    // Monitorando o par principal
+                    var alertRepository = scope.ServiceProvider.GetRequiredService<IArbitrageAlertRepository>();
+
+                    // 1. Calcula a diferença entre Binance e Bitget
                     var result = await arbitrageService.CalculateArbitrageAsync("BTCUSDT");
 
-                    if (result.PercentageProfit > 0.5m) // Se o lucro for maior que 0.5%
+                    // 2. Lógica de Alerta: Se o lucro for maior que 0.2% (ajustável)
+                    if (result.PercentageProfit > 0.2m)
                     {
-                        _logger.LogWarning("🚀 OPORTUNIDADE: {Symbol} | Lucro: {Profit}% | Binance: {P1} | Bitget: {P2}", 
-                            result.Symbol, result.PercentageProfit, result.PriceExA, result.PriceExB);
+                        _logger.LogWarning("🚀 OPORTUNIDADE ENCONTRADA: {Symbol} | Lucro: {Profit}%", 
+                            result.Symbol, result.PercentageProfit);
+
+                        // 3. Persiste a oportunidade no banco de dados
+                        var newAlert = new ArbitrageAlert(
+                            result.Symbol, 
+                            result.PriceExA, 
+                            result.PriceExB, 
+                            result.PercentageProfit
+                        );
+
+                        await alertRepository.AddAsync(newAlert);
+                        _logger.LogInformation("✅ Alerta salvo no banco de dados com sucesso.");
                     }
                     else
                     {
-                        _logger.LogInformation("📊 Monitorando {Symbol}... Sem lucro relevante agora.", result.Symbol);
+                        _logger.LogInformation("📊 {Time} - {Symbol}: {Profit}% (Aguardando oportunidade...)", 
+                            DateTime.Now.ToString("HH:mm:ss"), result.Symbol, result.PercentageProfit);
                     }
                 }
             }
             catch (Exception ex)
             {
-                _logger.LogError("❌ Erro no monitor: {Message}", ex.Message);
+                _logger.LogError("❌ Erro no ciclo do monitor: {Message}", ex.Message);
             }
 
-            // Espera 10 segundos antes da próxima verificação
+            // Espera 10 segundos para não ser bloqueado pelas APIs (Rate Limit)
             await Task.Delay(TimeSpan.FromSeconds(10), stoppingToken);
         }
     }
