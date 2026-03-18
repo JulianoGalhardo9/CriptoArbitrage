@@ -1,0 +1,8 @@
+.container { padding: 30px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+table { width: 100%; border-collapse: collapse; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-radius: 8px; overflow: hidden; }
+th { background-color: #2c3e50; color: white; padding: 15px; text-align: left; }
+td { padding: 12px 15px; border-bottom: 1px solid #eee; }
+tr:hover { background-color: #f5f6fa; }
+.symbol { font-weight: bold; color: #2980b9; }
+.profit-cell { font-weight: bold; }
+.badge { background: #3498db; color: white; padding: 5px 10px; border-radius: 20px; font-size: 11px; text-transform: uppercase; }
