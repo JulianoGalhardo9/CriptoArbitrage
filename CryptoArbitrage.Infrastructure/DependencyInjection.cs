@@ -1,6 +1,7 @@
 using CryptoArbitrage.Domain.Interfaces;
 using CryptoArbitrage.Infrastructure.Data;
 using CryptoArbitrage.Infrastructure.ExternalServices;
+using CryptoArbitrage.Infrastructure.Notifications;
 using CryptoArbitrage.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -35,6 +36,8 @@ public static class DependencyInjection
 
         // Interface padrão para outros serviços que precisem de um preço genérico
         services.AddScoped<IExternalPriceService, BinanceService>();
+
+        services.AddScoped<INotificationService, TelegramNotificationService>();
 
         return services;
     }
