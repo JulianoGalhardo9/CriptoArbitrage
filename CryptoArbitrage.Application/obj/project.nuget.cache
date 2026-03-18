@@ -1,11 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "laA1ngmq+S0=",
+  "dgSpecHash": "gYi9PF71sVQ=",
   "success": true,
   "projectFilePath": "/Users/julianogalhardo/Documents/CryptoArbitrage/CryptoArbitrage.Application/CryptoArbitrage.Application.csproj",
   "expectedPackageFiles": [
     "/Users/julianogalhardo/.nuget/packages/microsoft.extensions.dependencyinjection/9.0.0/microsoft.extensions.dependencyinjection.9.0.0.nupkg.sha512",
-    "/Users/julianogalhardo/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/9.0.0/microsoft.extensions.dependencyinjection.abstractions.9.0.0.nupkg.sha512"
+    "/Users/julianogalhardo/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/9.0.0/microsoft.extensions.dependencyinjection.abstractions.9.0.0.nupkg.sha512",
+    "/Users/julianogalhardo/.nuget/packages/microsoft.netcore.app.ref/9.0.14/microsoft.netcore.app.ref.9.0.14.nupkg.sha512",
+    "/Users/julianogalhardo/.nuget/packages/microsoft.aspnetcore.app.ref/9.0.14/microsoft.aspnetcore.app.ref.9.0.14.nupkg.sha512"
   ],
   "logs": []
 }
