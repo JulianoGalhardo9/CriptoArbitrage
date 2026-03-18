@@ -1,1 +1,8 @@
-/* You can add global styles to this file, and also import other style files */
+/* src/styles.css */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #0b0e11; /* Cor de fundo oficial da Binance Dark */
+  color: #eaecef;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}

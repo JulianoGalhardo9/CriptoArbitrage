@@ -1,0 +1,21 @@
+/* src/app/app.css */
+.header-container {
+  text-align: center;
+  padding: 40px 20px;
+  background: linear-gradient(180deg, #161a1e 0%, #0b0e11 100%);
+  border-bottom: 1px solid #2b3139;
+}
+
+h1 {
+  font-size: 2.2rem;
+  letter-spacing: -1px;
+  background: linear-gradient(90deg, #f0b90b, #ffd700); /* Dourado Crypto */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 5px;
+}
+
+p {
+  color: #848e9c;
+  font-size: 0.9rem;
+}
