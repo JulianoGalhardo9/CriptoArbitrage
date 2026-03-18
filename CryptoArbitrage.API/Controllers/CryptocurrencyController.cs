@@ -9,11 +9,13 @@ namespace CryptoArbitrage.API.Controllers;
 public class CryptocurrencyController : ControllerBase
 {
     private readonly ICryptoService _cryptoService;
+    private readonly IArbitrageService _arbitrageService;
 
     // Construtor: A API pede o serviço para a camada de Application
-    public CryptocurrencyController(ICryptoService cryptoService)
+    public CryptocurrencyController(ICryptoService cryptoService, IArbitrageService arbitrageService)
     {
         _cryptoService = cryptoService;
+        _arbitrageService = arbitrageService;
     }
 
     [HttpPost]
@@ -34,6 +36,13 @@ public class CryptocurrencyController : ControllerBase
             return NotFound(new { message = "Symbol not found on Binance" });
         }
 
+        return Ok(result);
+    }
+
+    [HttpGet("compare/{symbol}")]
+    public async Task<IActionResult> Compare(string symbol)
+    {
+        var result = await _arbitrageService.CalculateArbitrageAsync(symbol);
         return Ok(result);
     }
 }
