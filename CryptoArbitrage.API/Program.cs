@@ -3,6 +3,7 @@ using CryptoArbitrage.Application;
 using CryptoArbitrage.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using CryptoArbitrage.Application.Workers;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
@@ -11,6 +12,13 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication();
 builder.Services.AddHostedService<ArbitrageMonitorWorker>();
+
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.Console()
+    .WriteTo.File("Logs/arbitrage-log-.txt", rollingInterval: RollingInterval.Day)
+    .CreateLogger();
+
+builder.Host.UseSerilog();
 
 var app = builder.Build();
 

@@ -68,4 +68,15 @@ public class CryptocurrencyController : ControllerBase
 
         return Ok(stats);
     }
+
+    [HttpGet("status")]
+    public IActionResult GetStatus()
+    {
+        return Ok(new
+        {
+            Status = "Running",
+            Machine = Environment.MachineName,
+            Timestamp = DateTime.UtcNow
+        });
+    }
 }

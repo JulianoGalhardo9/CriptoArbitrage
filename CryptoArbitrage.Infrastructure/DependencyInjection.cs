@@ -15,19 +15,25 @@ public static class DependencyInjection
         var connectionString = configuration.GetConnectionString("DefaultConnection");
 
         services.AddDbContext<AppDbContext>(options =>
-            options.UseMySql(connectionString!, new MariaDbServerVersion(new Version(12, 2, 2))));
+            options.UseMySql(connectionString!, ServerVersion.AutoDetect(connectionString))); // Auto-detect é mais seguro para Docker
 
+        // Repositórios
         services.AddScoped<ICryptocurrencyRepository, CryptocurrencyRepository>();
-
         services.AddScoped<IArbitrageAlertRepository, ArbitrageAlertRepository>();
 
-        // Adiciona as ferramentas de HTTP do .NET
-        services.AddHttpClient();
+        // Configuração do HttpClient com Resiliência (Timeout)
+        services.AddHttpClient("CryptoClient", client =>
+        {
+            client.Timeout = TimeSpan.FromSeconds(5);
+            // Adicionar um User-Agent ajuda a evitar bloqueios de algumas APIs
+            client.DefaultRequestHeaders.Add("User-Agent", "CryptoArbitrageBot");
+        });
 
+        // Registro dos serviços concretos para o ArbitrageService (Cálculo Paralelo)
         services.AddScoped<BinanceService>();
         services.AddScoped<BitgetService>();
 
-        // Liga a nossa interface à implementação da Binance
+        // Interface padrão para outros serviços que precisem de um preço genérico
         services.AddScoped<IExternalPriceService, BinanceService>();
 
         return services;

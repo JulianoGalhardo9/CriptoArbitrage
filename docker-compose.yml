@@ -50,6 +50,8 @@ services:
         condition: service_healthy
     networks:
       - crypto-network
+    volumes:
+      - ./logs:/app/Logs
 
 networks:
   crypto-network:

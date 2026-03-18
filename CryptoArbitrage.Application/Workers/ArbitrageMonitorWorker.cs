@@ -37,32 +37,34 @@ public class ArbitrageMonitorWorker : BackgroundService
                     var alertRepo = scope.ServiceProvider.GetRequiredService<IArbitrageAlertRepository>();
                     var cryptoRepo = scope.ServiceProvider.GetRequiredService<ICryptocurrencyRepository>();
 
-                    // 1. Busca todas as moedas que você cadastrou (Ex: BTC, ETH, SOL)
+                    // Busca todas as moedas que você cadastrou (Ex: BTC, ETH, SOL)
                     var myCryptos = await cryptoRepo.GetAllAsync();
 
-                    foreach (var crypto in myCryptos)
+                    // Criamos uma lista de tarefas (Tasks) para todas as moedas
+                    var tasks = myCryptos.Select(async crypto =>
                     {
                         try
                         {
-                            // O símbolo no banco pode ser "BTC", mas nas APIs precisamos de "BTCUSDT"
                             string symbolPair = crypto.Symbol.EndsWith("USDT") ? crypto.Symbol : $"{crypto.Symbol}USDT";
 
+                            // Chamada assíncrona paralela
                             var result = await arbitrageService.CalculateArbitrageAsync(symbolPair);
 
                             if (strategy.IsProfitable(result.PercentageProfit))
                             {
-                                // Salva o alerta...
+                                var alert = new ArbitrageAlert(result.Symbol, result.PriceExA, result.PriceExB, result.PercentageProfit);
+                                await alertRepo.AddAsync(alert);
                                 _logger.LogWarning("💰 OPORTUNIDADE EM {Symbol}: {Profit}%", result.Symbol, result.PercentageProfit);
                             }
                         }
                         catch (Exception ex)
                         {
-                            _logger.LogError("❌ Erro ao processar {Symbol}: {Msg}", crypto.Symbol, ex.Message);
+                            _logger.LogError(" Falha ao processar {Symbol}: {Msg}", crypto.Symbol, ex.Message);
                         }
+                    });
 
-                        // Pequena pausa entre moedas para não ser bloqueado (Rate Limit)
-                        await Task.Delay(500, stoppingToken);
-                    }
+                    // Executa todas as consultas simultaneamente
+                    await Task.WhenAll(tasks);
                 }
             }
             catch (Exception ex)
