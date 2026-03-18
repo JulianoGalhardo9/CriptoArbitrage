@@ -22,9 +22,12 @@ public static class DependencyInjection
         // Adiciona as ferramentas de HTTP do .NET
         services.AddHttpClient();
 
+        services.AddScoped<BinanceService>();
+        services.AddScoped<BitgetService>();
+
         // Liga a nossa interface à implementação da Binance
         services.AddScoped<IExternalPriceService, BinanceService>();
-        
+
         return services;
     }
 }

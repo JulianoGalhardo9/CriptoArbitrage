@@ -1,35 +1,35 @@
 using CryptoArbitrage.Application.DTOs;
 using CryptoArbitrage.Application.Interfaces;
-using CryptoArbitrage.Domain.Interfaces;
-
-namespace CryptoArbitrage.Application.Services;
+using CryptoArbitrage.Infrastructure.ExternalServices;
 
 public class ArbitrageService : IArbitrageService
 {
-    private readonly IExternalPriceService _priceService;
+    private readonly BinanceService _binance;
+    private readonly BitgetService _bitget;
 
-    public ArbitrageService(IExternalPriceService priceService)
+    // Injetamos as implementações específicas diretamente
+    public ArbitrageService(BinanceService binance, BitgetService bitget)
     {
-        _priceService = priceService;
+        _binance = binance;
+        _bitget = bitget;
     }
 
     public async Task<ArbitrageResult> CalculateArbitrageAsync(string symbol)
     {
-        // 1. Buscamos o preço na Binance (nossa Exchange A)
-        var priceA = await _priceService.GetPriceAsync(symbol);
+        // Agora buscamos preços REAIS em dois lugares diferentes ao mesmo tempo!
+        var priceBinance = await _binance.GetPriceAsync(symbol);
+        var priceBitget = await _bitget.GetPriceAsync(symbol);
 
-        // 2. Simulação: Como ainda não temos a Exchange B configurada, 
-        // vamos simular um preço 2% menor para testar o cálculo.
-        var priceB = priceA * 0.98m; 
+        if (priceBinance == 0 || priceBitget == 0)
+            throw new Exception("Erro ao buscar preços em uma das exchanges.");
 
-        // 3. Cálculos de Arbitragem
-        var difference = Math.Abs(priceA - priceB);
-        var profitPercent = (difference / Math.Min(priceA, priceB)) * 100;
+        var difference = Math.Abs(priceBinance - priceBitget);
+        var profitPercent = (difference / Math.Min(priceBinance, priceBitget)) * 100;
 
         return new ArbitrageResult(
             symbol.ToUpper(),
-            priceA,
-            priceB,
+            priceBinance, // Preço Exchange A
+            priceBitget,  // Preço Exchange B
             difference,
             Math.Round(profitPercent, 2)
         );

@@ -9,5 +9,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CryptoArbitrage.Domain\CryptoArbitrage.Domain.csproj" />
+    <ProjectReference Include="..\CryptoArbitrage.Infrastructure\CryptoArbitrage.Infrastructure.csproj" />
   </ItemGroup>
 </Project>

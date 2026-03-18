@@ -20,6 +20,160 @@
           "net9.0"
         ],
         "sources": {
+          "/usr/local/share/dotnet/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "/Users/julianogalhardo/Documents/CryptoArbitrage/CryptoArbitrage.Domain/CryptoArbitrage.Domain.csproj": {
+                "projectPath": "/Users/julianogalhardo/Documents/CryptoArbitrage/CryptoArbitrage.Domain/CryptoArbitrage.Domain.csproj"
+              },
+              "/Users/julianogalhardo/Documents/CryptoArbitrage/CryptoArbitrage.Infrastructure/CryptoArbitrage.Infrastructure.csproj": {
+                "projectPath": "/Users/julianogalhardo/Documents/CryptoArbitrage/CryptoArbitrage.Infrastructure/CryptoArbitrage.Infrastructure.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.200"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "dependencies": {
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[9.0.14, 9.0.14]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[9.0.14, 9.0.14]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/10.0.201/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/julianogalhardo/Documents/CryptoArbitrage/CryptoArbitrage.Domain/CryptoArbitrage.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/julianogalhardo/Documents/CryptoArbitrage/CryptoArbitrage.Domain/CryptoArbitrage.Domain.csproj",
+        "projectName": "CryptoArbitrage.Domain",
+        "projectPath": "/Users/julianogalhardo/Documents/CryptoArbitrage/CryptoArbitrage.Domain/CryptoArbitrage.Domain.csproj",
+        "packagesPath": "/Users/julianogalhardo/.nuget/packages/",
+        "outputPath": "/Users/julianogalhardo/Documents/CryptoArbitrage/CryptoArbitrage.Domain/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/julianogalhardo/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "/usr/local/share/dotnet/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.200"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[9.0.14, 9.0.14]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[9.0.14, 9.0.14]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/10.0.201/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/julianogalhardo/Documents/CryptoArbitrage/CryptoArbitrage.Infrastructure/CryptoArbitrage.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/julianogalhardo/Documents/CryptoArbitrage/CryptoArbitrage.Infrastructure/CryptoArbitrage.Infrastructure.csproj",
+        "projectName": "CryptoArbitrage.Infrastructure",
+        "projectPath": "/Users/julianogalhardo/Documents/CryptoArbitrage/CryptoArbitrage.Infrastructure/CryptoArbitrage.Infrastructure.csproj",
+        "packagesPath": "/Users/julianogalhardo/.nuget/packages/",
+        "outputPath": "/Users/julianogalhardo/Documents/CryptoArbitrage/CryptoArbitrage.Infrastructure/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/julianogalhardo/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "/usr/local/share/dotnet/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -42,13 +196,23 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "10.0.200"
       },
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
-            "Microsoft.Extensions.DependencyInjection": {
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Microsoft.Extensions.Http": {
+              "target": "Package",
+              "version": "[10.0.5, )"
+            },
+            "Pomelo.EntityFrameworkCore.MySql": {
               "target": "Package",
               "version": "[9.0.0, )"
             }
@@ -64,71 +228,22 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[9.0.14, 9.0.14]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[9.0.14, 9.0.14]"
             }
-          },
-          "runtimeIdentifierGraphPath": "/Users/julianogalhardo/.dotnet/sdk/9.0.312/PortableRuntimeIdentifierGraph.json"
-        }
-      }
-    },
-    "/Users/julianogalhardo/Documents/CryptoArbitrage/CryptoArbitrage.Domain/CryptoArbitrage.Domain.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "/Users/julianogalhardo/Documents/CryptoArbitrage/CryptoArbitrage.Domain/CryptoArbitrage.Domain.csproj",
-        "projectName": "CryptoArbitrage.Domain",
-        "projectPath": "/Users/julianogalhardo/Documents/CryptoArbitrage/CryptoArbitrage.Domain/CryptoArbitrage.Domain.csproj",
-        "packagesPath": "/Users/julianogalhardo/.nuget/packages/",
-        "outputPath": "/Users/julianogalhardo/Documents/CryptoArbitrage/CryptoArbitrage.Domain/obj/",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "/Users/julianogalhardo/.nuget/NuGet/NuGet.Config"
-        ],
-        "originalTargetFrameworks": [
-          "net9.0"
-        ],
-        "sources": {
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "net9.0": {
-            "targetAlias": "net9.0",
-            "projectReferences": {}
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.300"
-      },
-      "frameworks": {
-        "net9.0": {
-          "targetAlias": "net9.0",
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48",
-            "net481"
           ],
-          "assetTargetFallback": true,
-          "warn": true,
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/Users/julianogalhardo/.dotnet/sdk/9.0.312/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/10.0.201/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
