@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "bEqqEPvxey8=",
+  "dgSpecHash": "vZCzJ7IKtHA=",
   "success": true,
   "projectFilePath": "/Users/julianogalhardo/Documents/CryptoArbitrage/CryptoArbitrage.Tests/CryptoArbitrage.Tests.csproj",
   "expectedPackageFiles": [
@@ -23,9 +23,7 @@
     "/Users/julianogalhardo/.nuget/packages/xunit.core/2.9.3/xunit.core.2.9.3.nupkg.sha512",
     "/Users/julianogalhardo/.nuget/packages/xunit.extensibility.core/2.9.3/xunit.extensibility.core.2.9.3.nupkg.sha512",
     "/Users/julianogalhardo/.nuget/packages/xunit.extensibility.execution/2.9.3/xunit.extensibility.execution.2.9.3.nupkg.sha512",
-    "/Users/julianogalhardo/.nuget/packages/xunit.runner.visualstudio/3.1.4/xunit.runner.visualstudio.3.1.4.nupkg.sha512",
-    "/Users/julianogalhardo/.nuget/packages/microsoft.netcore.app.ref/9.0.14/microsoft.netcore.app.ref.9.0.14.nupkg.sha512",
-    "/Users/julianogalhardo/.nuget/packages/microsoft.aspnetcore.app.ref/9.0.14/microsoft.aspnetcore.app.ref.9.0.14.nupkg.sha512"
+    "/Users/julianogalhardo/.nuget/packages/xunit.runner.visualstudio/3.1.4/xunit.runner.visualstudio.3.1.4.nupkg.sha512"
   ],
   "logs": []
 }

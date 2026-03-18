@@ -4,6 +4,7 @@ using CryptoArbitrage.Domain.Interfaces;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
+using CryptoArbitrage.Domain.Models;
 
 namespace CryptoArbitrage.Application.Workers;
 
@@ -20,6 +21,9 @@ public class ArbitrageMonitorWorker : BackgroundService
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
+        // Definimos a estratégia (no futuro, isso pode vir do appsettings.json ou do Banco)
+        var strategy = new ArbitrageStrategy { MinProfitPercentage = 0.3m, EstimatedFees = 0.15m };
+
         _logger.LogInformation("🤖 Monitor de Arbitragem iniciado e vigiando o mercado...");
 
         while (!stoppingToken.IsCancellationRequested)
@@ -36,25 +40,14 @@ public class ArbitrageMonitorWorker : BackgroundService
                     var result = await arbitrageService.CalculateArbitrageAsync("BTCUSDT");
 
                     // 2. Lógica de Alerta: Se o lucro for maior que 0.2% (ajustável)
-                    if (result.PercentageProfit > 0.2m)
+                    if (strategy.IsProfitable(result.PercentageProfit))
                     {
-                        _logger.LogWarning("OPORTUNIDADE ENCONTRADA: {Symbol} | Lucro: {Profit}%", 
-                            result.Symbol, result.PercentageProfit);
-
-                        // 3. Persiste a oportunidade no banco de dados
-                        var newAlert = new ArbitrageAlert(
-                            result.Symbol, 
-                            result.PriceExA, 
-                            result.PriceExB, 
-                            result.PercentageProfit
-                        );
-
-                        await alertRepository.AddAsync(newAlert);
-                        _logger.LogInformation("Alerta salvo no banco de dados com sucesso.");
+                        _logger.LogWarning("LUCRO REAL DETECTADO (Descontando Taxas): {Profit}%",
+                            result.PercentageProfit - strategy.EstimatedFees);
                     }
                     else
                     {
-                        _logger.LogInformation("{Time} - {Symbol}: {Profit}% (Aguardando oportunidade...)", 
+                        _logger.LogInformation("{Time} - {Symbol}: {Profit}% (Aguardando oportunidade...)",
                             DateTime.Now.ToString("HH:mm:ss"), result.Symbol, result.PercentageProfit);
                     }
                 }

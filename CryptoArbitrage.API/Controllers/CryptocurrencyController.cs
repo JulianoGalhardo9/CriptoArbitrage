@@ -52,4 +52,20 @@ public class CryptocurrencyController : ControllerBase
         var alerts = await _cryptoService.GetRecentAlertsAsync(count);
         return Ok(alerts);
     }
+
+    [HttpGet("alerts/stats")]
+    public async Task<IActionResult> GetStats()
+    {
+        var alerts = await _cryptoService.GetRecentAlertsAsync(100);
+
+        var stats = new
+        {
+            TotalAlerts = alerts.Count(),
+            AverageProfit = alerts.Any() ? alerts.Average(a => a.Profit) : 0,
+            BestOpportunity = alerts.Any() ? alerts.Max(a => a.Profit) : 0,
+            LastUpdate = DateTime.UtcNow
+        };
+
+        return Ok(stats);
+    }
 }
