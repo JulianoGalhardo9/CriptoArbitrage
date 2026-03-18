@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ITgiTEfO1zI=",
+  "dgSpecHash": "IS7sYlcqcOI=",
   "success": true,
   "projectFilePath": "/Users/julianogalhardo/Documents/CryptoArbitrage/CryptoArbitrage.Infrastructure/CryptoArbitrage.Infrastructure.csproj",
   "expectedPackageFiles": [
@@ -51,9 +51,7 @@
     "/Users/julianogalhardo/.nuget/packages/system.reflection.metadata/7.0.0/system.reflection.metadata.7.0.0.nupkg.sha512",
     "/Users/julianogalhardo/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
     "/Users/julianogalhardo/.nuget/packages/system.text.json/9.0.0/system.text.json.9.0.0.nupkg.sha512",
-    "/Users/julianogalhardo/.nuget/packages/system.threading.channels/7.0.0/system.threading.channels.7.0.0.nupkg.sha512",
-    "/Users/julianogalhardo/.nuget/packages/microsoft.netcore.app.ref/9.0.14/microsoft.netcore.app.ref.9.0.14.nupkg.sha512",
-    "/Users/julianogalhardo/.nuget/packages/microsoft.aspnetcore.app.ref/9.0.14/microsoft.aspnetcore.app.ref.9.0.14.nupkg.sha512"
+    "/Users/julianogalhardo/.nuget/packages/system.threading.channels/7.0.0/system.threading.channels.7.0.0.nupkg.sha512"
   ],
   "logs": []
 }

@@ -20,7 +20,20 @@ public class CryptocurrencyController : ControllerBase
     public async Task<IActionResult> Register(RegisterCryptoRequest request)
     {
         await _cryptoService.ExecuteAddAsync(request);
-        
+
         return StatusCode(201);
+    }
+
+    [HttpGet("price/{symbol}")]
+    public async Task<IActionResult> GetPrice(string symbol)
+    {
+        var result = await _cryptoService.GetCurrentPriceAsync(symbol);
+
+        if (result.Price == 0)
+        {
+            return NotFound(new { message = "Symbol not found on Binance" });
+        }
+
+        return Ok(result);
     }
 }
