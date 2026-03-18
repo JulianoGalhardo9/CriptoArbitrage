@@ -20,7 +20,19 @@ Log.Logger = new LoggerConfiguration()
 
 builder.Host.UseSerilog();
 
+// Program.cs (Backend)
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AngularApp", policy =>
+    {
+        policy.WithOrigins("http://localhost:4200")
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
 var app = builder.Build();
+app.UseCors("AngularApp");
 
 // Aplica migrations com retry (aguarda o banco subir)
 using (var scope = app.Services.CreateScope())
