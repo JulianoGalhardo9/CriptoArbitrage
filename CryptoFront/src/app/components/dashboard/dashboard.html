@@ -2,11 +2,10 @@
   <div class="dashboard-header">
     <div class="status-indicator">
       <span class="dot"></span>
-      LIVE MARKET DATA
     </div>
     <h2>Monitor de Arbitragem</h2>
   </div>
-  
+
   <table class="crypto-table">
     <thead>
       <tr>
@@ -18,27 +17,31 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let op of oportunidades">
-        <td>
-          <span class="symbol">{{ op.symbol }}</span>
-        </td>
-        
-        <td class="price">
-          $ {{ op.priceBinance.toLocaleString('en-US', { minimumFractionDigits: 2 }) }}
-        </td>
-        
-        <td class="price">
-          $ {{ op.priceBitget.toLocaleString('en-US', { minimumFractionDigits: 2 }) }}
-        </td>
-        
-        <td [class.profit-up]="op.profit > 0" [class.profit-down]="op.profit <= 0" class="percent">
-          {{ op.profit > 0 ? '▲' : '▼' }} {{ op.profit }}%
-        </td>
-        
-        <td>
-          <span class="badge">Monitoring</span>
-        </td>
-      </tr>
+      @for (op of oportunidades; track op.id) {
+        <tr>
+          <td>
+            <span class="symbol">{{ op.symbol }}</span>
+          </td>
+
+          <td class="price">$ {{ op.priceBinance | number: '1.2-2' }}</td>
+
+          <td class="price">$ {{ op.priceBitget | number: '1.2-2' }}</td>
+
+          <td
+            [class.profit-up]="op.profitPercentage > 0"
+            [class.profit-down]="op.profitPercentage <= 0"
+            class="percent"
+          >
+            {{ op.profitPercentage > 0 ? '▲' : '▼' }} {{ op.profitPercentage | number: '1.2-4' }}%
+          </td>
+
+          <td><span class="badge">Ativo</span></td>
+        </tr>
+      } @empty {
+        <tr>
+          <td colspan="5" style="text-align: center; padding: 20px">Conectando às exchanges...</td>
+        </tr>
+      }
     </tbody>
   </table>
 

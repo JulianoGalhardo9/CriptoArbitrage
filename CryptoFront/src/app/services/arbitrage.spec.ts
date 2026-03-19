@@ -1,13 +1,18 @@
 import { TestBed } from '@angular/core/testing';
+import { provideHttpClient } from '@angular/common/http';
+import { ArbitrageService } from './arbitrage';
 
-import { Arbitrage } from './arbitrage';
-
-describe('Arbitrage', () => {
-  let service: Arbitrage;
+describe('ArbitrageService', () => {
+  let service: ArbitrageService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(Arbitrage);
+    TestBed.configureTestingModule({
+      providers: [
+        provideHttpClient(),
+        ArbitrageService
+      ]
+    });
+    service = TestBed.inject(ArbitrageService);
   });
 
   it('should be created', () => {

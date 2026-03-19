@@ -5,4 +5,6 @@ public interface IArbitrageAlertRepository
 {
     Task AddAsync(ArbitrageAlert alert);
     Task<IEnumerable<ArbitrageAlert>> GetRecentAlertsAsync(int count);
+
+    Task<IEnumerable<ArbitrageAlert>> GetAllAsync();
 }

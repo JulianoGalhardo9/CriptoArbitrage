@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ArbitrageService {
-  private apiUrl = 'http://localhost:8080/api/arbitrage'; // Ajuste para a sua rota real
+  private apiUrl = 'http://localhost:5174/api/arbitrage'; // Ajuste para a sua rota real
 
   constructor(private http: HttpClient) { }
 
